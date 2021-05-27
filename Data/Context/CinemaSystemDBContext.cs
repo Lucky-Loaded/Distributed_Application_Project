@@ -11,5 +11,8 @@ namespace Data.Context
     public class CinemaSystemDBContext : DbContext
     {
         public DbSet<Film> Films { get; set; }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

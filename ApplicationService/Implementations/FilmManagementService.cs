@@ -24,8 +24,12 @@ namespace ApplicationService.Implementations
                     Id = item.Id,
                     Title = item.Title,
                     Publishment = item.Publishment,
-                    Price = item.Price
-                });
+                    Price = item.Price,
+                    Sales = item.Sales,
+                    Crew = item.Crew,
+                    Comment = item.Comment
+
+                }) ;
             }
             return filmDto;
         }
@@ -34,7 +38,11 @@ namespace ApplicationService.Implementations
             {
                 Title = filmDTO.Title,
                 Publishment = filmDTO.Publishment,
-                Price = filmDTO.Price
+                Price = filmDTO.Price,
+                Sales = filmDTO.Sales,
+                Crew = filmDTO.Crew,
+                Comment = filmDTO.Comment
+
             };
             try
             {

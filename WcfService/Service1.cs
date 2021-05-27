@@ -52,11 +52,40 @@ namespace WcfService
         {
             if (!filmService.Delete(id))
             {
-                return "Film's not deleted";
+                return "User's not deleted";
             }
             else
             {
-                return "Film's deleted";
+                return "User's deleted";
+            }
+        }
+        private UserManagementService userService = new UserManagementService();
+
+        public List<UserDTO> GetUser()
+        {
+            return userService.Get();
+        }
+
+        public string PostUser(UserDTO userDto)
+        {
+            if (!userService.Save(userDto))
+            {
+                return "User's not saved";
+            }
+            else
+            {
+                return "User's saved";
+            }
+        }
+        public string DeleteUser(int id)
+        {
+            if (!userService.Delete(id))
+            {
+                return "User's not deleted";
+            }
+            else
+            {
+                return "User's deleted";
             }
         }
     }

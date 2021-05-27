@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities
+namespace ApplicationService.DTOs
 {
-    public class User : BaseEntity
+    public class UserDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public byte Age { get; set; }
 
         public double Budget { get; set; }
 
-        public int Buyed { get; set; } 
+        public int Buyed { get; set; }
 
         public string Favorites { get; set; }
 

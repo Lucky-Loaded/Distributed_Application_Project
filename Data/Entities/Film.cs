@@ -14,6 +14,12 @@ namespace Data.Entities
 
         public double Price { get; set; }
 
+        public int Sales { get; set; }
+        
+        public string Crew { get; set; } 
+        public string Comment { get; set; }
+
+        
 
     }
 }

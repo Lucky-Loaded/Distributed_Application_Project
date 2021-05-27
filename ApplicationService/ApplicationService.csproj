@@ -52,18 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\FilmDTO.cs" />
+    <Compile Include="DTOs\OrderDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Implementations\FilmManagementService.cs" />
+    <Compile Include="Implementations\OrderManagementService.cs" />
+    <Compile Include="Implementations\UserManagementService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{e4e4531c-6fb6-457a-98bc-4db0dc5cfb09}</Project>
       <Name>Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

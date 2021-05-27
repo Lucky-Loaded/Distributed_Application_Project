@@ -27,9 +27,26 @@ namespace WcfService
 
         [OperationContract]
         string PostFilm(FilmDTO filmDto);
-        
+
+      //  [OperationContract]
+      //  string PutFilm(FilmDTO filmDto);
+
         [OperationContract]
         string DeleteFilm(int id);
+
+        // TODO: Add your service operations here
+
+        [OperationContract]
+        List<UserDTO> GetUser();
+
+        [OperationContract]
+        string PostUser(UserDTO userDto);
+
+       // [OperationContract]
+       // string PutUser(UserDTO userDto);
+
+        [OperationContract]
+        string DeleteUser(int id);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

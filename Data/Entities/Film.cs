@@ -19,6 +19,8 @@ namespace Data.Entities
         public string Crew { get; set; } 
         public string Comment { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
         
 
     }

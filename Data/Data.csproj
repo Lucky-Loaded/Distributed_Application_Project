@@ -51,18 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\CinemaSystemDBContext.cs" />
+    <Compile Include="Context\Cinema1SystemDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Film.cs" />
-    <Compile Include="Migrations\202105261303297_InitialCreate.cs" />
-    <Compile Include="Migrations\202105261303297_InitialCreate.designer.cs">
-      <DependentUpon>202105261303297_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105271410322_AddedUsersOrders.cs" />
-    <Compile Include="Migrations\202105271410322_AddedUsersOrders.designer.cs">
-      <DependentUpon>202105271410322_AddedUsersOrders.cs</DependentUpon>
+    <Compile Include="Migrations\202105281705471_InitialMigration.cs" />
+    <Compile Include="Migrations\202105281705471_InitialMigration.designer.cs">
+      <DependentUpon>202105281705471_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,11 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105261303297_InitialCreate.resx">
-      <DependentUpon>202105261303297_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105271410322_AddedUsersOrders.resx">
-      <DependentUpon>202105271410322_AddedUsersOrders.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105281705471_InitialMigration.resx">
+      <DependentUpon>202105281705471_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,7 +12,7 @@ namespace ApplicationService.Implementations
     public class OrderManagementService
     {
        
-            private CinemaSystemDBContext ctx = new CinemaSystemDBContext();
+            private Cinema1SystemDBContext ctx = new Cinema1SystemDBContext();
 
             List<OrderDTO> orderDto = new List<OrderDTO>();
 

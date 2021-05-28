@@ -3,10 +3,28 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddUsers : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Films",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Publishment = c.DateTime(nullable: false),
+                        Price = c.Double(nullable: false),
+                        Sales = c.Int(nullable: false),
+                        Crew = c.String(),
+                        Comment = c.String(),
+                        CreatedBy = c.Int(nullable: false),
+                        CteatedOn = c.DateTime(),
+                        UpdatedBy = c.Int(nullable: false),
+                        UpdatedOn = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Orders",
                 c => new
@@ -22,8 +40,14 @@
                         CteatedOn = c.DateTime(),
                         UpdatedBy = c.Int(nullable: false),
                         UpdatedOn = c.DateTime(),
+                        Film_Id = c.Int(),
+                        User_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Films", t => t.Film_Id)
+                .ForeignKey("dbo.Users", t => t.User_Id)
+                .Index(t => t.Film_Id)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.Users",
@@ -43,18 +67,17 @@
                     })
                 .PrimaryKey(t => t.Id);
             
-            AddColumn("dbo.Films", "Sales", c => c.Int(nullable: false));
-            AddColumn("dbo.Films", "Crew", c => c.String());
-            AddColumn("dbo.Films", "Comment", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Films", "Comment");
-            DropColumn("dbo.Films", "Crew");
-            DropColumn("dbo.Films", "Sales");
+            DropForeignKey("dbo.Orders", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Orders", "Film_Id", "dbo.Films");
+            DropIndex("dbo.Orders", new[] { "User_Id" });
+            DropIndex("dbo.Orders", new[] { "Film_Id" });
             DropTable("dbo.Users");
             DropTable("dbo.Orders");
+            DropTable("dbo.Films");
         }
     }
 }

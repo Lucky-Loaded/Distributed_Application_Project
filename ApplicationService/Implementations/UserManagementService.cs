@@ -11,7 +11,7 @@ namespace ApplicationService.Implementations
 {
     public class UserManagementService
     {
-        private CinemaSystemDBContext ctx = new CinemaSystemDBContext();
+        private Cinema1SystemDBContext ctx = new Cinema1SystemDBContext();
 
         List<UserDTO> userDto = new List<UserDTO>();
 

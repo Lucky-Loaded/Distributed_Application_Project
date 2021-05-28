@@ -19,5 +19,7 @@ namespace Data.Entities
         public string Favorites { get; set; }
 
         public string Description { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

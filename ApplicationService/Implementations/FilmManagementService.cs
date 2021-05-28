@@ -13,7 +13,7 @@ namespace ApplicationService.Implementations
 {
     public class FilmManagementService
     {
-        private CinemaSystemDBContext ctx = new CinemaSystemDBContext();
+        private Cinema1SystemDBContext ctx = new Cinema1SystemDBContext();
 
         public List<FilmDTO> Get() {
             List<FilmDTO> filmDto = new List<FilmDTO>();

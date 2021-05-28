@@ -10,7 +10,7 @@ namespace Data.Entities
     {
         public string Title { get; set; }
 
-        public DateTime Publishment { get; set; }
+        public DateTime? Publishment { get; set; }
 
         public double Price { get; set; }
 

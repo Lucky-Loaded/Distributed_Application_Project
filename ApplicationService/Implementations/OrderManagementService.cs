@@ -26,7 +26,27 @@ namespace ApplicationService.Implementations
                     {
                         Id = item.Id,
                         Id_Film = item.Id_Film,
+                        Film = new FilmDTO 
+                        { 
+                        Id = item.Id_Film,
+                        Title = item.Film.Title,
+                            Publishment = item.Film.Publishment,
+                            Price = item.Film.Price,
+                            Sales = item.Film.Sales,
+                            Crew = item.Film.Crew,
+                            Comment = item.Film.Comment
+                        },
                         Id_User = item.Id_User,
+                        User = new UserDTO 
+                        { 
+                        Id = item.Id_User,
+                            Name = item.User.Name,
+                            Age = item.User.Age,
+                            Budget = item.User.Budget,
+                            Buyed = item.User.Buyed,
+                            Favorites = item.User.Favorites,
+                            Description = item.User.Description
+                        },
                         Adress = item.Adress,
                         Time_Order = item.Time_Order,
                         Delivery_Price = item.Delivery_Price,

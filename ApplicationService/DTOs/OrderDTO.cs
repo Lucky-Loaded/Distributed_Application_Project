@@ -13,10 +13,10 @@ namespace ApplicationService.DTOs
         public int Id { get; set; }
         
         public int Id_Film { get; set; }
-        public virtual Film Film { get; set; }
+        public virtual FilmDTO Film { get; set; }
         
         public int Id_User { get; set; }
-        public virtual User User { get; set; }
+        public virtual UserDTO User { get; set; }
 
         public string Adress { get; set; }
 

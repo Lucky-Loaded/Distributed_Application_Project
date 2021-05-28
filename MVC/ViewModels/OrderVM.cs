@@ -10,13 +10,15 @@ namespace MVC.ViewModels
     public class OrderVM
     {
         public int Id { get; set; }
+
         public int Id_Film { get; set; }
+        public virtual FilmDTO Film { get; set; }
 
         public int Id_User { get; set; }
+        public virtual UserDTO User { get; set; }
 
         public string Adress { get; set; }
 
-        [Required]
         public DateTime Time_Order { get; set; }
 
         public float Delivery_Price { get; set; }

@@ -32,17 +32,23 @@
   <wsdl:message name="IService1_PostFilm_OutputMessage">
     <wsdl:part name="parameters" element="tns:PostFilmResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetFilmByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmByID" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetFilmByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFilmByIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_DeleteFilm_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFilm" />
   </wsdl:message>
   <wsdl:message name="IService1_DeleteFilm_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFilmResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_GetUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetUser" />
+  <wsdl:message name="IService1_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
   </wsdl:message>
-  <wsdl:message name="IService1_GetUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  <wsdl:message name="IService1_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_PostUser_InputMessage">
     <wsdl:part name="parameters" element="tns:PostUser" />
@@ -50,11 +56,41 @@
   <wsdl:message name="IService1_PostUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:PostUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetUserByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByID" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_DeleteUser_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUser" />
   </wsdl:message>
   <wsdl:message name="IService1_DeleteUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrders" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PostOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:PostOrder" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PostOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetOrderByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderByID" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetOrderByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrder" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DeleteOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrderResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
@@ -73,21 +109,45 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PostFilm" message="tns:IService1_PostFilm_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/PostFilmResponse" message="tns:IService1_PostFilm_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetFilmByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetFilmByID" message="tns:IService1_GetFilmByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetFilmByIDResponse" message="tns:IService1_GetFilmByID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteFilm">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteFilm" message="tns:IService1_DeleteFilm_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteFilmResponse" message="tns:IService1_DeleteFilm_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUser" message="tns:IService1_GetUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserResponse" message="tns:IService1_GetUser_OutputMessage" />
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUsers" message="tns:IService1_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUsersResponse" message="tns:IService1_GetUsers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="PostUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/PostUser" message="tns:IService1_PostUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/PostUserResponse" message="tns:IService1_PostUser_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserByID" message="tns:IService1_GetUserByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserByIDResponse" message="tns:IService1_GetUserByID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteUser" message="tns:IService1_DeleteUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteUserResponse" message="tns:IService1_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetOrders" message="tns:IService1_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetOrdersResponse" message="tns:IService1_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PostOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PostOrder" message="tns:IService1_PostOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PostOrderResponse" message="tns:IService1_PostOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetOrderByID" message="tns:IService1_GetOrderByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetOrderByIDResponse" message="tns:IService1_GetOrderByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteOrder" message="tns:IService1_DeleteOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteOrderResponse" message="tns:IService1_DeleteOrder_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -128,6 +188,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFilmByID">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetFilmByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteFilm">
       <soap:operation soapAction="http://tempuri.org/IService1/DeleteFilm" style="document" />
       <wsdl:input>
@@ -137,8 +206,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUser">
-      <soap:operation soapAction="http://tempuri.org/IService1/GetUser" style="document" />
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUsers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -155,8 +224,53 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUserByID">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteUser">
       <soap:operation soapAction="http://tempuri.org/IService1/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostOrder">
+      <soap:operation soapAction="http://tempuri.org/IService1/PostOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderByID">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetOrderByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrder">
+      <soap:operation soapAction="http://tempuri.org/IService1/DeleteOrder" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

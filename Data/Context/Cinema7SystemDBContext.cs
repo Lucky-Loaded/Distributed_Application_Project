@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data.Context
 {
-    public class Cinema1SystemDBContext : DbContext
+    public class Cinema7SystemDBContext : DbContext
     {
         public DbSet<Film> Films { get; set; }
 

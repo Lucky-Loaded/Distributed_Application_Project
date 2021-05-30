@@ -11,7 +11,7 @@ namespace ApplicationService.Implementations
 {
     public class UserManagementService
     {
-        private Cinema1SystemDBContext ctx = new Cinema1SystemDBContext();
+        private Cinema7SystemDBContext ctx = new Cinema7SystemDBContext();
 
         List<UserDTO> userDto = new List<UserDTO>();
 
@@ -69,6 +69,24 @@ namespace ApplicationService.Implementations
             {
                 return false;
             }
+        }
+        public UserDTO GetByID(int id)
+        {
+
+            UserDTO userDTO = new UserDTO();
+
+            User user = ctx.Users.Find(id);
+            if (user != null)
+            {
+                userDTO.Id = user.Id;
+                userDTO.Name = user.Name;
+                    userDTO.Age = user.Age;
+                userDTO.Budget = user.Budget;
+                    userDTO.Buyed = user.Buyed;
+                    userDTO.Favorites = user.Favorites;
+                userDTO.Description = user.Description;
+            }
+            return userDTO;
         }
 
     }

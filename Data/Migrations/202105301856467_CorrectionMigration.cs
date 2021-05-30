@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class CorrectionMigration : DbMigration
     {
         public override void Up()
         {
@@ -12,14 +12,14 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Publishment = c.DateTime(nullable: false),
-                        Price = c.Double(nullable: false),
+                        Title = c.String(nullable: false),
+                        Publishment = c.DateTime(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Sales = c.Int(nullable: false),
                         Crew = c.String(),
                         Comment = c.String(),
                         CreatedBy = c.Int(nullable: false),
-                        CteatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(),
                         UpdatedBy = c.Int(nullable: false),
                         UpdatedOn = c.DateTime(),
                     })
@@ -30,38 +30,38 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Id_Film = c.Int(nullable: false),
-                        Id_User = c.Int(nullable: false),
-                        Adress = c.String(),
+                        Film_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
+                        Address = c.String(),
                         Time_Order = c.DateTime(nullable: false),
                         Delivery_Price = c.Single(nullable: false),
                         Order_Price = c.Double(nullable: false),
                         CreatedBy = c.Int(nullable: false),
-                        CteatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(),
                         UpdatedBy = c.Int(nullable: false),
                         UpdatedOn = c.DateTime(),
-                        Film_Id = c.Int(),
-                        User_Id = c.Int(),
+                        Film_Id1 = c.Int(),
+                        User_Id1 = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Films", t => t.Film_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id)
-                .Index(t => t.Film_Id)
-                .Index(t => t.User_Id);
+                .ForeignKey("dbo.Films", t => t.Film_Id1)
+                .ForeignKey("dbo.Users", t => t.User_Id1)
+                .Index(t => t.Film_Id1)
+                .Index(t => t.User_Id1);
             
             CreateTable(
                 "dbo.Users",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Age = c.Byte(nullable: false),
                         Budget = c.Double(nullable: false),
                         Buyed = c.Int(nullable: false),
                         Favorites = c.String(),
                         Description = c.String(),
                         CreatedBy = c.Int(nullable: false),
-                        CteatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(),
                         UpdatedBy = c.Int(nullable: false),
                         UpdatedOn = c.DateTime(),
                     })
@@ -71,10 +71,10 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Orders", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.Orders", "Film_Id", "dbo.Films");
-            DropIndex("dbo.Orders", new[] { "User_Id" });
-            DropIndex("dbo.Orders", new[] { "Film_Id" });
+            DropForeignKey("dbo.Orders", "User_Id1", "dbo.Users");
+            DropForeignKey("dbo.Orders", "Film_Id1", "dbo.Films");
+            DropIndex("dbo.Orders", new[] { "User_Id1" });
+            DropIndex("dbo.Orders", new[] { "Film_Id1" });
             DropTable("dbo.Users");
             DropTable("dbo.Orders");
             DropTable("dbo.Films");

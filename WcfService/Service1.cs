@@ -59,9 +59,12 @@ namespace WcfService
                 return "User's deleted";
             }
         }
+        public FilmDTO GetFilmByID(int id) {
+            return filmService.GetByID(id);
+        }
         private UserManagementService userService = new UserManagementService();
 
-        public List<UserDTO> GetUser()
+        public List<UserDTO> GetUsers()
         {
             return userService.Get();
         }
@@ -88,5 +91,43 @@ namespace WcfService
                 return "User's deleted";
             }
         }
+        public UserDTO GetUserByID(int id)
+        {
+            return userService.GetByID(id);
+        }
+        private OrderManagementService orderService = new OrderManagementService();
+
+        public List<OrderDTO> GetOrders()
+        {
+            return orderService.Get();
+        }
+
+        public string PostOrder(OrderDTO orderDto)
+        {
+            if (!orderService.Save(orderDto))
+            {
+                return "Order's not saved";
+            }
+            else
+            {
+                return "Order's saved";
+            }
+        }
+        public string DeleteOrder(int id)
+        {
+            if (!orderService.Delete(id))
+            {
+                return "Order's not deleted";
+            }
+            else
+            {
+                return "Order's deleted";
+            }
+        }
+        public OrderDTO GetOrderByID(int id)
+        {
+            return orderService.GetByID(id);
+        }
+
     }
 }

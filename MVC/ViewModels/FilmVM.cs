@@ -14,9 +14,11 @@ namespace MVC.ViewModels
         [Required]
         public string Title { get; set; }
 
+        [Display(Name = "Date of publishment")]
+        [DataType(DataType.Date)]
         public DateTime? Publishment { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         public int Sales { get; set; }
 

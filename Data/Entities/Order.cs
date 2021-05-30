@@ -9,14 +9,14 @@ namespace Data.Entities
 {
     public class Order : BaseEntity
     {
-
-        public int Id_Film { get; set; }
+        
+        public int Film_Id { get; set; }
         public virtual Film Film { get; set; }
 
-        public int Id_User { get; set; }
+        public int User_Id { get; set; }
         public virtual User User { get; set; }
 
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         public DateTime Time_Order { get; set; }

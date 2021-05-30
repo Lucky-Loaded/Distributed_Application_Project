@@ -14,7 +14,7 @@ namespace ApplicationService.DTOs
 
     public DateTime? Publishment { get; set; }
 
-    public double Price { get; set; }
+    public decimal Price { get; set; }
 
     public int Sales { get; set; }
 

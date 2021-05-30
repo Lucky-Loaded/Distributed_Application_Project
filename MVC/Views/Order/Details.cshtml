@@ -1,0 +1,66 @@
+﻿@model MVC.ViewModels.OrderVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Film)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Film)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_User)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time_Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time_Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

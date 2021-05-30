@@ -51,14 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\Cinema1SystemDBContext.cs" />
+    <Compile Include="Context\Cinema7SystemDBContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Film.cs" />
-    <Compile Include="Migrations\202105281705471_InitialMigration.cs" />
-    <Compile Include="Migrations\202105281705471_InitialMigration.designer.cs">
-      <DependentUpon>202105281705471_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202105301856467_CorrectionMigration.cs" />
+    <Compile Include="Migrations\202105301856467_CorrectionMigration.designer.cs">
+      <DependentUpon>202105301856467_CorrectionMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105281705471_InitialMigration.resx">
-      <DependentUpon>202105281705471_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105301856467_CorrectionMigration.resx">
+      <DependentUpon>202105301856467_CorrectionMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

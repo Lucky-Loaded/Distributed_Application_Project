@@ -102,17 +102,23 @@ namespace MVC.SOAPService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PostFilm", ReplyAction="http://tempuri.org/IService1/PostFilmResponse")]
         System.Threading.Tasks.Task<string> PostFilmAsync(ApplicationService.DTOs.FilmDTO filmDto);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetFilmByID", ReplyAction="http://tempuri.org/IService1/GetFilmByIDResponse")]
+        ApplicationService.DTOs.FilmDTO GetFilmByID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetFilmByID", ReplyAction="http://tempuri.org/IService1/GetFilmByIDResponse")]
+        System.Threading.Tasks.Task<ApplicationService.DTOs.FilmDTO> GetFilmByIDAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteFilm", ReplyAction="http://tempuri.org/IService1/DeleteFilmResponse")]
         string DeleteFilm(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteFilm", ReplyAction="http://tempuri.org/IService1/DeleteFilmResponse")]
         System.Threading.Tasks.Task<string> DeleteFilmAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUser", ReplyAction="http://tempuri.org/IService1/GetUserResponse")]
-        ApplicationService.DTOs.UserDTO[] GetUser();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUsers", ReplyAction="http://tempuri.org/IService1/GetUsersResponse")]
+        ApplicationService.DTOs.UserDTO[] GetUsers();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUser", ReplyAction="http://tempuri.org/IService1/GetUserResponse")]
-        System.Threading.Tasks.Task<ApplicationService.DTOs.UserDTO[]> GetUserAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUsers", ReplyAction="http://tempuri.org/IService1/GetUsersResponse")]
+        System.Threading.Tasks.Task<ApplicationService.DTOs.UserDTO[]> GetUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PostUser", ReplyAction="http://tempuri.org/IService1/PostUserResponse")]
         string PostUser(ApplicationService.DTOs.UserDTO userDto);
@@ -120,11 +126,41 @@ namespace MVC.SOAPService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PostUser", ReplyAction="http://tempuri.org/IService1/PostUserResponse")]
         System.Threading.Tasks.Task<string> PostUserAsync(ApplicationService.DTOs.UserDTO userDto);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserByID", ReplyAction="http://tempuri.org/IService1/GetUserByIDResponse")]
+        ApplicationService.DTOs.UserDTO GetUserByID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserByID", ReplyAction="http://tempuri.org/IService1/GetUserByIDResponse")]
+        System.Threading.Tasks.Task<ApplicationService.DTOs.UserDTO> GetUserByIDAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteUser", ReplyAction="http://tempuri.org/IService1/DeleteUserResponse")]
         string DeleteUser(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteUser", ReplyAction="http://tempuri.org/IService1/DeleteUserResponse")]
         System.Threading.Tasks.Task<string> DeleteUserAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOrders", ReplyAction="http://tempuri.org/IService1/GetOrdersResponse")]
+        ApplicationService.DTOs.OrderDTO[] GetOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOrders", ReplyAction="http://tempuri.org/IService1/GetOrdersResponse")]
+        System.Threading.Tasks.Task<ApplicationService.DTOs.OrderDTO[]> GetOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PostOrder", ReplyAction="http://tempuri.org/IService1/PostOrderResponse")]
+        string PostOrder(ApplicationService.DTOs.OrderDTO orderDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PostOrder", ReplyAction="http://tempuri.org/IService1/PostOrderResponse")]
+        System.Threading.Tasks.Task<string> PostOrderAsync(ApplicationService.DTOs.OrderDTO orderDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOrderByID", ReplyAction="http://tempuri.org/IService1/GetOrderByIDResponse")]
+        ApplicationService.DTOs.OrderDTO GetOrderByID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetOrderByID", ReplyAction="http://tempuri.org/IService1/GetOrderByIDResponse")]
+        System.Threading.Tasks.Task<ApplicationService.DTOs.OrderDTO> GetOrderByIDAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteOrder", ReplyAction="http://tempuri.org/IService1/DeleteOrderResponse")]
+        string DeleteOrder(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteOrder", ReplyAction="http://tempuri.org/IService1/DeleteOrderResponse")]
+        System.Threading.Tasks.Task<string> DeleteOrderAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -186,6 +222,14 @@ namespace MVC.SOAPService {
             return base.Channel.PostFilmAsync(filmDto);
         }
         
+        public ApplicationService.DTOs.FilmDTO GetFilmByID(int id) {
+            return base.Channel.GetFilmByID(id);
+        }
+        
+        public System.Threading.Tasks.Task<ApplicationService.DTOs.FilmDTO> GetFilmByIDAsync(int id) {
+            return base.Channel.GetFilmByIDAsync(id);
+        }
+        
         public string DeleteFilm(int id) {
             return base.Channel.DeleteFilm(id);
         }
@@ -194,12 +238,12 @@ namespace MVC.SOAPService {
             return base.Channel.DeleteFilmAsync(id);
         }
         
-        public ApplicationService.DTOs.UserDTO[] GetUser() {
-            return base.Channel.GetUser();
+        public ApplicationService.DTOs.UserDTO[] GetUsers() {
+            return base.Channel.GetUsers();
         }
         
-        public System.Threading.Tasks.Task<ApplicationService.DTOs.UserDTO[]> GetUserAsync() {
-            return base.Channel.GetUserAsync();
+        public System.Threading.Tasks.Task<ApplicationService.DTOs.UserDTO[]> GetUsersAsync() {
+            return base.Channel.GetUsersAsync();
         }
         
         public string PostUser(ApplicationService.DTOs.UserDTO userDto) {
@@ -210,12 +254,52 @@ namespace MVC.SOAPService {
             return base.Channel.PostUserAsync(userDto);
         }
         
+        public ApplicationService.DTOs.UserDTO GetUserByID(int id) {
+            return base.Channel.GetUserByID(id);
+        }
+        
+        public System.Threading.Tasks.Task<ApplicationService.DTOs.UserDTO> GetUserByIDAsync(int id) {
+            return base.Channel.GetUserByIDAsync(id);
+        }
+        
         public string DeleteUser(int id) {
             return base.Channel.DeleteUser(id);
         }
         
         public System.Threading.Tasks.Task<string> DeleteUserAsync(int id) {
             return base.Channel.DeleteUserAsync(id);
+        }
+        
+        public ApplicationService.DTOs.OrderDTO[] GetOrders() {
+            return base.Channel.GetOrders();
+        }
+        
+        public System.Threading.Tasks.Task<ApplicationService.DTOs.OrderDTO[]> GetOrdersAsync() {
+            return base.Channel.GetOrdersAsync();
+        }
+        
+        public string PostOrder(ApplicationService.DTOs.OrderDTO orderDTO) {
+            return base.Channel.PostOrder(orderDTO);
+        }
+        
+        public System.Threading.Tasks.Task<string> PostOrderAsync(ApplicationService.DTOs.OrderDTO orderDTO) {
+            return base.Channel.PostOrderAsync(orderDTO);
+        }
+        
+        public ApplicationService.DTOs.OrderDTO GetOrderByID(int id) {
+            return base.Channel.GetOrderByID(id);
+        }
+        
+        public System.Threading.Tasks.Task<ApplicationService.DTOs.OrderDTO> GetOrderByIDAsync(int id) {
+            return base.Channel.GetOrderByIDAsync(id);
+        }
+        
+        public string DeleteOrder(int id) {
+            return base.Channel.DeleteOrder(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> DeleteOrderAsync(int id) {
+            return base.Channel.DeleteOrderAsync(id);
         }
     }
 }

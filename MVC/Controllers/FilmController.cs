@@ -20,8 +20,13 @@ namespace MVC.Controllers
                     filmVM.Add(new FilmVM(item));
                 }
             }
-                return View(filmVM);
+            return View(filmVM);
         }
+        public ActionResult Create() {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(FilmVM filmVM)
         {
 
@@ -41,10 +46,10 @@ namespace MVC.Controllers
                             Comment = filmVM.Comment
                         };
                         service.PostFilm(filmDTO);
-                        return RedirectToAction("Index");
+                        
 
                     }
-
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -58,7 +63,38 @@ namespace MVC.Controllers
                 service.DeleteFilm(id);
             }
             return RedirectToAction("Index");
-        
+
         }
+        public ActionResult Details(int id){
+            FilmVM filmVM = new FilmVM();
+            using (SOAPService.Service1Client service = new SOAPService.Service1Client())
+            {
+                filmVM = new FilmVM(service.GetFilmByID(id));
+                    }
+            return View(filmVM);
+        }
+       /* public ActionResult Edit(int id)
+        {
+            EditClientModel model = null;
+            if (id != null)
+            {
+                model = new EditClientModel(getDbContext.getDb().Clients.Where(i => i.id == id).First());
+            }
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public ActionResult Edit(EditClientModel model)
+        {
+            
+                var client = getDbContext.getDb().Clients.Where(i => i.id == model.id).First();
+                client.clientFirstName = model.firsName;
+                client.clientSecondName = model.secondName;
+                client.phoneNumber = model.phone;
+                getDbContext.getDb().SaveChanges();
+                return View("Done");
+            
+        }
+       */
     }
 }

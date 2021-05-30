@@ -13,7 +13,7 @@ namespace ApplicationService.Implementations
 {
     public class FilmManagementService
     {
-        private Cinema1SystemDBContext ctx = new Cinema1SystemDBContext();
+        private Cinema7SystemDBContext ctx = new Cinema7SystemDBContext();
 
         public List<FilmDTO> Get() {
             List<FilmDTO> filmDto = new List<FilmDTO>();
@@ -67,5 +67,30 @@ namespace ApplicationService.Implementations
                 return false;
             }
         }
+        public FilmDTO GetByID(int id) {
+
+            FilmDTO filmDTO = new FilmDTO();
+
+            Film film = ctx.Films.Find(id);
+            if (film != null) {
+                filmDTO.Id = film.Id;
+                filmDTO.Title = film.Title;
+                filmDTO.Publishment = film.Publishment;
+                filmDTO.Price = film.Price;
+                filmDTO.Sales = film.Sales;
+                filmDTO.Crew = film.Crew;
+                filmDTO.Comment = film.Comment;
+            }
+            return filmDTO;
+        }
+        /*public FilmDTO Edit(int id) {
+            FilmDTO filmDTO = new FilmDTO();
+
+            Film film = ctx.Films.Find(id){
+            
+            }
+
+            
+        }*/
     }
 }

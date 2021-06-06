@@ -114,6 +114,12 @@ namespace MVC.SOAPService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteFilm", ReplyAction="http://tempuri.org/IService1/DeleteFilmResponse")]
         System.Threading.Tasks.Task<string> DeleteFilmAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PutFilm", ReplyAction="http://tempuri.org/IService1/PutFilmResponse")]
+        string PutFilm(ApplicationService.DTOs.FilmDTO filmDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/PutFilm", ReplyAction="http://tempuri.org/IService1/PutFilmResponse")]
+        System.Threading.Tasks.Task<string> PutFilmAsync(ApplicationService.DTOs.FilmDTO filmDTO);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUsers", ReplyAction="http://tempuri.org/IService1/GetUsersResponse")]
         ApplicationService.DTOs.UserDTO[] GetUsers();
         
@@ -236,6 +242,14 @@ namespace MVC.SOAPService {
         
         public System.Threading.Tasks.Task<string> DeleteFilmAsync(int id) {
             return base.Channel.DeleteFilmAsync(id);
+        }
+        
+        public string PutFilm(ApplicationService.DTOs.FilmDTO filmDTO) {
+            return base.Channel.PutFilm(filmDTO);
+        }
+        
+        public System.Threading.Tasks.Task<string> PutFilmAsync(ApplicationService.DTOs.FilmDTO filmDTO) {
+            return base.Channel.PutFilmAsync(filmDTO);
         }
         
         public ApplicationService.DTOs.UserDTO[] GetUsers() {

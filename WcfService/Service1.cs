@@ -48,13 +48,24 @@ namespace WcfService
                 return "Film's saved";
             }
         }
+        public string PutFilm(FilmDTO filmDto)
+        {
+            if (!filmService.Update(filmDto))
+            {
+                return "Film's not saved";
+            }
+            else
+            {
+                return "Film's saved";
+            }
+        }
         public string DeleteFilm(int id)
         {
             if (!filmService.Delete(id))
             {
                 return "User's not deleted";
             }
-            else
+            else 
             {
                 return "User's deleted";
             }

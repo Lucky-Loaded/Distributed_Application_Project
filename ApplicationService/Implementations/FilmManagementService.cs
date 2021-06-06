@@ -54,6 +54,32 @@ namespace ApplicationService.Implementations
                 return false;
             }
         }
+        public bool Update(FilmDTO filmDTO)
+        {
+            Film Film = new Film
+            {
+               Id = filmDTO.Id,
+                Title = filmDTO.Title,
+                Publishment = filmDTO.Publishment,
+                Price = filmDTO.Price,
+                Sales = filmDTO.Sales,
+                Crew = filmDTO.Crew,
+                Comment = filmDTO.Comment
+
+            };
+            try
+            {
+                
+                ctx.Films.Remove(ctx.Films.Find(filmDTO.Id));
+                ctx.Films.Add(Film);
+                ctx.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool Delete(int id)
         {
             try
@@ -92,5 +118,6 @@ namespace ApplicationService.Implementations
 
             
         }*/
+        
     }
 }

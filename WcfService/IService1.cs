@@ -34,6 +34,8 @@ namespace WcfService
         [OperationContract]
         string DeleteFilm(int id);
 
+        [OperationContract]
+        string PutFilm(FilmDTO filmDTO);
         // TODO: Add your service operations here
 
         [OperationContract]

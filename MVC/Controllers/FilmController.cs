@@ -1,4 +1,7 @@
 ﻿using ApplicationService.DTOs;
+using Data.Context;
+using Data.Entities;
+using Microsoft.Ajax.Utilities;
 using MVC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -73,28 +76,43 @@ namespace MVC.Controllers
                     }
             return View(filmVM);
         }
-       /* public ActionResult Edit(int id)
+        public ActionResult Edit(int id)
         {
-            EditClientModel model = null;
-            if (id != null)
-            {
-                model = new EditClientModel(getDbContext.getDb().Clients.Where(i => i.id == id).First());
-            }
-            return View(model);
-        }
-
+            FilmVM filmVM = null;
+            using (SOAPService.Service1Client service = new SOAPService.Service1Client()) {
+                if (id != 0)
+                {
+                    filmVM = new FilmVM(service.GetFilmByID(id) );
+                }
+                return View(filmVM);
+            } }
+        private Cinema7SystemDBContext ctx = new Cinema7SystemDBContext();
         [HttpPost, ActionName("Edit")]
-        public ActionResult Edit(EditClientModel model)
+        public ActionResult Edit(FilmVM filmVM)
         {
-            
-                var client = getDbContext.getDb().Clients.Where(i => i.id == model.id).First();
-                client.clientFirstName = model.firsName;
-                client.clientSecondName = model.secondName;
-                client.phoneNumber = model.phone;
-                getDbContext.getDb().SaveChanges();
-                return View("Done");
-            
+
+            using (SOAPService.Service1Client service = new SOAPService.Service1Client())
+            {
+                if (filmVM.Title.IsNullOrWhiteSpace())
+                {
+                    ViewBag.Eror = "This field is required";
+                    return View();
+                }
+                else
+                {
+
+                    FilmDTO filmDTO = service.GetFilmByID(filmVM.Id);
+
+                    filmDTO.Title = filmVM.Title;
+                    filmDTO.Publishment = filmVM.Publishment;
+                    filmDTO.Price = filmVM.Price;
+                    filmDTO.Sales = filmVM.Sales;
+                    filmDTO.Crew = filmVM.Crew;
+                    filmDTO.Comment = filmVM.Comment;
+                    service.PutFilm(filmDTO);
+                }
+                return RedirectToAction("Index");
+            }
         }
-       */
     }
 }

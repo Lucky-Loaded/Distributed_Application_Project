@@ -44,6 +44,12 @@
   <wsdl:message name="IService1_DeleteFilm_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFilmResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_PutFilm_InputMessage">
+    <wsdl:part name="parameters" element="tns:PutFilm" />
+  </wsdl:message>
+  <wsdl:message name="IService1_PutFilm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PutFilmResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetUsers_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUsers" />
   </wsdl:message>
@@ -116,6 +122,10 @@
     <wsdl:operation name="DeleteFilm">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteFilm" message="tns:IService1_DeleteFilm_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteFilmResponse" message="tns:IService1_DeleteFilm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PutFilm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/PutFilm" message="tns:IService1_PutFilm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PutFilmResponse" message="tns:IService1_PutFilm_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUsers" message="tns:IService1_GetUsers_InputMessage" />
@@ -199,6 +209,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteFilm">
       <soap:operation soapAction="http://tempuri.org/IService1/DeleteFilm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutFilm">
+      <soap:operation soapAction="http://tempuri.org/IService1/PutFilm" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

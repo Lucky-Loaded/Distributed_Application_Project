@@ -6,73 +6,81 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Entities;
-
-
+using Repository.Implementations;
 
 namespace ApplicationService.Implementations
 {
     public class FilmManagementService
     {
-        private Cinema7SystemDBContext ctx = new Cinema7SystemDBContext();
 
-        public List<FilmDTO> Get() {
+        public List<FilmDTO> Get(string query) {
             List<FilmDTO> filmDto = new List<FilmDTO>();
-
-            foreach (var item in ctx.Films.ToList()) {
-                filmDto.Add(new FilmDTO
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                if (query == null)
                 {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Publishment = item.Publishment,
-                    Price = item.Price,
-                    Sales = item.Sales,
-                    Crew = item.Crew,
-                    Comment = item.Comment
+                    foreach (var item in unitOfWork.FilmRepository.Get())
+                    {
+                        filmDto.Add(new FilmDTO
+                        {
+                            Id = item.Id,
+                            Title = item.Title,
+                            Publishment = item.Publishment,
+                            Price = item.Price,
+                            Sales = item.Sales,
+                            Crew = item.Crew,
+                            Comment = item.Comment
 
-                }) ;
+                        });
+                    }
+                }
+                else
+                {
+                    foreach (var item in unitOfWork.FilmRepository.GetByQuery().Where(c => c.Title.Contains(query)).ToList())
+                    {
+                        filmDto.Add(new FilmDTO
+                        {
+                            Id = item.Id,
+                            Title = item.Title,
+                            Publishment = item.Publishment,
+                            Price = item.Price,
+                            Sales = item.Sales,
+                            Crew = item.Crew,
+                            Comment = item.Comment
+                        });
+                    }
+                }
             }
-            return filmDto;
+                return filmDto;
         }
-        public bool Save(FilmDTO filmDTO) {
-            Film Film = new Film
-            {
-                Title = filmDTO.Title,
-                Publishment = filmDTO.Publishment,
-                Price = filmDTO.Price,
-                Sales = filmDTO.Sales,
-                Crew = filmDTO.Crew,
-                Comment = filmDTO.Comment
-
-            };
-            try
-            {
-                ctx.Films.Add(Film);
-                ctx.SaveChanges();
-                return true;
-            }
-            catch {
-                return false;
-            }
-        }
-        public bool Update(FilmDTO filmDTO)
+        public bool Save(FilmDTO filmDTO)
         {
-            Film Film = new Film
+            Film film = new Film()
             {
-               Id = filmDTO.Id,
+                Id = filmDTO.Id,
                 Title = filmDTO.Title,
                 Publishment = filmDTO.Publishment,
                 Price = filmDTO.Price,
                 Sales = filmDTO.Sales,
                 Crew = filmDTO.Crew,
                 Comment = filmDTO.Comment
-
             };
+
             try
             {
-                
-                ctx.Films.Remove(ctx.Films.Find(filmDTO.Id));
-                ctx.Films.Add(Film);
-                ctx.SaveChanges();
+                using (UnitOfWork unitOfWork = new UnitOfWork())
+                {
+                    if (filmDTO.Id == 0)
+                    {
+                        unitOfWork.FilmRepository.Insert(film);
+                    }
+                    else
+                    {
+                        unitOfWork.FilmRepository.Update(film);
+                    }
+                    unitOfWork.Save();
+                }
+
                 return true;
             }
             catch
@@ -80,44 +88,46 @@ namespace ApplicationService.Implementations
                 return false;
             }
         }
+
         public bool Delete(int id)
         {
             try
             {
-                Film film = ctx.Films.Find(id);
-                ctx.Films.Remove(film);
-                ctx.SaveChanges();
+                using (UnitOfWork unitOfWork = new UnitOfWork())
+                {
+                    Film film = unitOfWork.FilmRepository.GetById(id);
+                    unitOfWork.FilmRepository.Delete(film);
+                    unitOfWork.Save();
+                }
+
                 return true;
             }
-            catch {
+            catch
+            {
                 return false;
             }
         }
-        public FilmDTO GetByID(int id) {
-
+        public FilmDTO GetById(int id)
+        {
             FilmDTO filmDTO = new FilmDTO();
 
-            Film film = ctx.Films.Find(id);
-            if (film != null) {
-                filmDTO.Id = film.Id;
-                filmDTO.Title = film.Title;
-                filmDTO.Publishment = film.Publishment;
-                filmDTO.Price = film.Price;
-                filmDTO.Sales = film.Sales;
-                filmDTO.Crew = film.Crew;
-                filmDTO.Comment = film.Comment;
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                Film film = unitOfWork.FilmRepository.GetById(id);
+
+                filmDTO = new FilmDTO
+                {
+                    Id = film.Id,
+                    Title = film.Title,
+                    Publishment = film.Publishment,
+                    Price = film.Price,
+                    Sales = film.Sales,
+                    Crew = film.Crew,
+                    Comment = film.Comment
+                };
             }
             return filmDTO;
         }
-        /*public FilmDTO Edit(int id) {
-            FilmDTO filmDTO = new FilmDTO();
 
-            Film film = ctx.Films.Find(id){
-            
-            }
-
-            
-        }*/
-        
     }
 }

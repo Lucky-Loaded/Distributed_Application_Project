@@ -12,18 +12,16 @@ namespace Data.Entities
         [Required]
         public string Title { get; set; }
 
+        public string Crew { get; set; }
+
         public DateTime? Publishment { get; set; }
+
+        public int Sales { get; set; }
 
         public decimal Price { get; set; }
 
-        public int Sales { get; set; }
-        
-        public string Crew { get; set; } 
         public string Comment { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
-
-        
-
     }
 }

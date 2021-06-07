@@ -11,21 +11,21 @@ namespace MVC.ViewModels
     {
         public int Id { get; set; }
 
-        public int Id_Film { get; set; }
-        public virtual FilmDTO Film { get; set; }
-
-        public int Id_User { get; set; }
-        public virtual UserDTO User { get; set; }
+        
+        
 
         public string Adress { get; set; }
 
         
-        public DateTime Time_Order { get; set; }
+        public DateTime? TimeOrder { get; set; }
 
-        public float Delivery_Price { get; set; }
+        public float DeliveryPrice { get; set; }
 
-        public double Order_Price { get; set; }
+        public decimal OrderPrice { get; set; }
+        public int FilmId { get; set; }
 
+
+        public int UserId { get; set; }
         public FilmVM FilmVM { get; set; }
 
         public UserVM UserVM { get; set; }
@@ -33,32 +33,32 @@ namespace MVC.ViewModels
         public OrderVM() { }
         public OrderVM(OrderDTO orderDTO) {
             Id = orderDTO.Id;
-                        Id_Film = orderDTO.Id_Film;
-                        /*Film = new FilmDTO
+                        FilmId = orderDTO.Film.Id;
+            FilmVM = new FilmVM
+            {
+                Id = orderDTO.Film.Id,
+                Title = orderDTO.Film.Title,
+                Publishment = orderDTO.Film.Publishment,
+                Price = orderDTO.Film.Price,
+                Sales = orderDTO.Film.Sales,
+                Crew = orderDTO.Film.Crew,
+                Comment = orderDTO.Film.Comment
+            };
+                         UserId = orderDTO.User.Id;
+            UserVM = new UserVM
                         {
-                            Id = orderDTO.Id_Film,
-                            Title = orderDTO.Film.Title,
-                            Publishment = orderDTO.Film.Publishment,
-                            Price = orderDTO.Film.Price,
-                            Sales = orderDTO.Film.Sales,
-                            Crew = orderDTO.Film.Crew,
-                            Comment = orderDTO.Film.Comment
-                        }; */
-                         Id_User = orderDTO.Id_User;
-            /* User = new UserDTO
-                        {
-                            Id = orderDTO.Id_User,
+                            Id = orderDTO.User.Id,
                             Name = orderDTO.User.Name,
                             Age = orderDTO.User.Age,
                             Budget = orderDTO.User.Budget,
-                            Buyed = orderDTO.User.Buyed,
+                            Buyed = orderDTO.User.Phone,
                             Favorites = orderDTO.User.Favorites,
                             Description = orderDTO.User.Description
-                        };*/
+                        };
             Adress = orderDTO.Address;
-                        Time_Order = orderDTO.Time_Order;
-                        Delivery_Price = orderDTO.Delivery_Price;
-                        Order_Price = orderDTO.Order_Price;
+                        TimeOrder = orderDTO.TimeOrder;
+                        DeliveryPrice = orderDTO.DeliveryPrice;
+                        OrderPrice = orderDTO.OrderPrice;
         }
     }
 }

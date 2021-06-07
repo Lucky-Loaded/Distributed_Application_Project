@@ -28,11 +28,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Age" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="Budget" type="xs:double" />
-      <xs:element minOccurs="0" name="Buyed" type="xs:int" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Favorites" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserDTO" nillable="true" type="tns:UserDTO" />
@@ -45,13 +45,11 @@
   <xs:complexType name="OrderDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Delivery_Price" type="xs:float" />
+      <xs:element minOccurs="0" name="DeliveryPrice" type="xs:float" />
       <xs:element minOccurs="0" name="Film" nillable="true" type="tns:FilmDTO" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Id_Film" type="xs:int" />
-      <xs:element minOccurs="0" name="Id_User" type="xs:int" />
-      <xs:element minOccurs="0" name="Order_Price" type="xs:double" />
-      <xs:element minOccurs="0" name="Time_Order" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OrderPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TimeOrder" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="User" nillable="true" type="tns:UserDTO" />
     </xs:sequence>
   </xs:complexType>

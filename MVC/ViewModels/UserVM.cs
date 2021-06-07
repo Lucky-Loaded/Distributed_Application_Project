@@ -29,7 +29,7 @@ namespace MVC.ViewModels
             Name = userDTO.Name;
             Age = userDTO.Age;
             Budget = userDTO.Budget;
-            Buyed = userDTO.Buyed;
+            Buyed = userDTO.Phone;
             Favorites = userDTO.Favorites;
             Description = userDTO.Description;
                 }

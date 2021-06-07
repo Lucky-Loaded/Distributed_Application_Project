@@ -1,6 +1,7 @@
 ﻿using ApplicationService.DTOs;
 using Data.Context;
 using Data.Entities;
+using Repository.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,138 +12,182 @@ namespace ApplicationService.Implementations
 {
     public class OrderManagementService
     {
-       
-            private Cinema7SystemDBContext ctx = new Cinema7SystemDBContext();
 
-            
-
-            public List<OrderDTO> Get()
+            public List<OrderDTO> Get(string query)
             {
             List<OrderDTO> orderDTO = new List<OrderDTO>();
-
-            foreach (var item in ctx.Orders.ToList())
+            using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                orderDTO.Add(new OrderDTO
+                if (query == null)
                 {
-                    Id = item.Id,
-                    Id_Film = item.Film_Id,
-                    /*Film = new FilmDTO
+                    foreach (var item in unitOfWork.OrderRepository.Get())
                     {
-                        Id = item.Film_Id,
-                        Title = item.Film.Title,
-                        Publishment = item.Film.Publishment,
-                        Price = item.Film.Price,
-                        Sales = item.Film.Sales,
-                        Crew = item.Film.Crew,
-                        Comment = item.Film.Comment
-                    },*/
-                    Id_User = item.User_Id,
-                    /*User = new UserDTO
-                    {
-                        Id = item.User_Id,
-                        Name = item.User.Name,
-                        Age = item.User.Age,
-                        Budget = item.User.Budget,
-                        Buyed = item.User.Buyed,
-                        Favorites = item.User.Favorites,
-                        Description = item.User.Description
-                    },*/
-                    Address = item.Address,
-                    Time_Order = item.Time_Order,
-                    Delivery_Price = item.Delivery_Price,
-                    Order_Price = item.Order_Price
-                });
-            }
-            return orderDTO;
-            }
-        public OrderDTO GetByID(int id) {
-            Order item = ctx.Orders.Find(id);
-            OrderDTO orderDTO = new OrderDTO
-            {
-                
-                Order_Price = item.Order_Price,
-                Id_Film = item.Film_Id,
-                /*Film = new FilmDTO
-                {
-                    Id = item.Film_Id,
-                    Title = item.Film.Title,
-                    Publishment = item.Film.Publishment,
-                    Price = item.Film.Price,
-                    Sales = item.Film.Sales,
-                    Crew = item.Film.Crew,
-                    Comment = item.Film.Comment
-                },*/
-                Id_User = item.User_Id,
-                /*User = new UserDTO
-                {
-                    Id = item.User_Id,
-                    Name = item.User.Name,
-                    Age = item.User.Age,
-                    Budget = item.User.Budget,
-                    Buyed = item.User.Buyed,
-                    Favorites = item.User.Favorites,
-                    Description = item.User.Description
-                },*/
-                Id = item.Id,
-                Address = item.Address,
-                Time_Order = item.Time_Order,
-                Delivery_Price = item.Delivery_Price
-
-            };
-            return orderDTO;
-        }
-
-            public bool Save(OrderDTO orderDTO)
-            {
-            if (orderDTO.Id_Film == 0)
-            {
-                return false;
-            }
-            else if (orderDTO.Id_User == 0)
-            {
-                    return false;
+                        orderDTO.Add(new OrderDTO
+                        {
+                            Id = item.Id,
+                            Film = new FilmDTO
+                            {
+                                Id = item.Film.Id,
+                                Title = item.Film.Title,
+                                Publishment = item.Film.Publishment,
+                                Price = item.Film.Price,
+                                Sales = item.Film.Sales,
+                                Crew = item.Film.Crew,
+                                Comment = item.Film.Comment
+                            },
+                            User = new UserDTO
+                            {
+                                Id = item.User.Id,
+                                Name = item.User.Name,
+                                Age = item.User.Age,
+                                Budget = item.User.Budget,
+                                Phone = item.User.Buyed,
+                                Favorites = item.User.Favorites,
+                                Description = item.User.Description
+                            },
+                            Address = item.Address,
+                            TimeOrder = item.TimeOrder,
+                            DeliveryPrice = item.DeliveryPrice,
+                            OrderPrice = item.OrderPrice
+                        });
+                    }
                 }
+                else
+                {
+                    foreach (var item in unitOfWork.OrderRepository.GetByQuery().Where(c => c.User.Name.Contains(query)).ToList())
+                    {
+                        orderDTO.Add(new OrderDTO
+                        {
+                            Id = item.Id,
+                            Film = new FilmDTO
+                            {
+                                Id = item.FilmId,
+                                Title = item.Film.Title,
+                                Publishment = item.Film.Publishment,
+                                Price = item.Film.Price,
+                                Sales = item.Film.Sales,
+                                Crew = item.Film.Crew,
+                                Comment = item.Film.Comment
+                            },
+                            User = new UserDTO
+                            {
+                                Id = item.UserId,
+                                Name = item.User.Name,
+                                Age = item.User.Age,
+                                Budget = item.User.Budget,
+                                Phone = item.User.Buyed,
+                                Favorites = item.User.Favorites,
+                                Description = item.User.Description
+                            },
+                            Address = item.Address,
+                            TimeOrder = item.TimeOrder,
+                            DeliveryPrice = item.DeliveryPrice,
+                            OrderPrice = item.OrderPrice
+                        });
+                    }
+                }
+            }
+                return orderDTO;
+            }
+        public OrderDTO GetById(int id)
+        {
+            OrderDTO orderDTO = new OrderDTO();
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                Order item = unitOfWork.OrderRepository.GetById(id);
+                if (item != null)
+                {
+                    orderDTO = new OrderDTO
+                    {
+                        Id = item.Id,
+                        Address = item.Address,
+                        OrderPrice = item.OrderPrice,
+                        DeliveryPrice = item.DeliveryPrice,
+                        TimeOrder = item.TimeOrder,
+                        Film = new FilmDTO
+                        {
+                            Id = item.FilmId,
+                            Title = item.Film.Title,
+                            Crew = item.Film.Crew,
+                            Publishment = item.Film.Publishment,
+                            Sales = item.Film.Sales,
+
+                            Price = item.Film.Price,
+                            Comment = item.Film.Comment
+                        },
+
+                        User = new UserDTO
+                        {
+                            Id = item.UserId,
+                            Name = item.User.Name,
+                            Age = item.User.Age,
+                            Budget = item.User.Budget,
+                            Phone = item.User.Phone,
+                            Favorites = item.User.Favorites,
+                            Description = item.User.Description
+                        }
+
+                    };
+                }
+            }
+                return orderDTO;
+            }
+        
+
+        public bool Save(OrderDTO orderDTO)
+            {
             
-
-
-    
-
             Order order = new Order
             {
                 Id = orderDTO.Id,
                 Address = orderDTO.Address,
-                Time_Order = orderDTO.Time_Order,
-                Delivery_Price = orderDTO.Delivery_Price,
-                Order_Price = orderDTO.Order_Price,
-                    Film_Id = orderDTO.Id_Film,
-                    User_Id = orderDTO.Id_User
+                TimeOrder = orderDTO.TimeOrder,
+                DeliveryPrice = orderDTO.DeliveryPrice,
+                OrderPrice = orderDTO.OrderPrice,
+                    FilmId = orderDTO.Film.Id,
+                    UserId = orderDTO.User.Id
                     
                 };
-                try
-                {
-                    ctx.Orders.Add(order);
-                    ctx.SaveChanges();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-            public bool Delete(int id)
+            try
             {
-                try
+                using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    Order order = ctx.Orders.Find(id);
-                    ctx.Orders.Remove(order);
-                    ctx.SaveChanges();
-                    return true;
+                    if (orderDTO.Id == 0)
+                    {
+                        unitOfWork.OrderRepository.Insert(order);
+                    }
+                    else
+                    {
+                        unitOfWork.OrderRepository.Update(order);
+                    }
+                    unitOfWork.Save();
                 }
-                catch
-                {
-                    return false;
-                }
+
+                return true;
             }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Delete(int id)
+            {
+            try
+            {
+                using (UnitOfWork unitOfWork = new UnitOfWork())
+                {
+                    Order order = unitOfWork.OrderRepository.GetById(id);
+                    unitOfWork.OrderRepository.Delete(order);
+                    unitOfWork.Save();
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         }
     }

@@ -15,7 +15,7 @@ namespace ApplicationService.DTOs
 
         public double Budget { get; set; }
 
-        public int Buyed { get; set; }
+        public int Phone { get; set; }
 
         public string Favorites { get; set; }
 

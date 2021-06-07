@@ -34,9 +34,9 @@ namespace WcfService
 
         private FilmManagementService filmService = new FilmManagementService();
 
-        public List<FilmDTO> GetFilms()
+        public List<FilmDTO> GetFilms(string query)
         {
-            return filmService.Get();
+            return filmService.Get(query);
         }
 
         public string PostFilm(FilmDTO filmDto)
@@ -48,17 +48,7 @@ namespace WcfService
                 return "Film's saved";
             }
         }
-        public string PutFilm(FilmDTO filmDto)
-        {
-            if (!filmService.Update(filmDto))
-            {
-                return "Film's not saved";
-            }
-            else
-            {
-                return "Film's saved";
-            }
-        }
+        
         public string DeleteFilm(int id)
         {
             if (!filmService.Delete(id))
@@ -71,13 +61,13 @@ namespace WcfService
             }
         }
         public FilmDTO GetFilmByID(int id) {
-            return filmService.GetByID(id);
+            return filmService.GetById(id);
         }
         private UserManagementService userService = new UserManagementService();
 
-        public List<UserDTO> GetUsers()
+        public List<UserDTO> GetUsers(string query)
         {
-            return userService.Get();
+            return userService.Get(query);
         }
 
         public string PostUser(UserDTO userDto)
@@ -108,9 +98,9 @@ namespace WcfService
         }
         private OrderManagementService orderService = new OrderManagementService();
 
-        public List<OrderDTO> GetOrders()
+        public List<OrderDTO> GetOrders(string query)
         {
-            return orderService.Get();
+            return orderService.Get(query);
         }
 
         public string PostOrder(OrderDTO orderDto)
@@ -137,7 +127,7 @@ namespace WcfService
         }
         public OrderDTO GetOrderByID(int id)
         {
-            return orderService.GetByID(id);
+            return orderService.GetById(id);
         }
 
     }

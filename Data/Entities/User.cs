@@ -16,12 +16,13 @@ namespace Data.Entities
 
         public double Budget { get; set; }
 
-        public int Buyed { get; set; } 
+        public int Phone { get; set; }
 
         public string Favorites { get; set; }
 
         public string Description { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+        public int Buyed { get; set; }
     }
 }

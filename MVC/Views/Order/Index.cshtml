@@ -12,22 +12,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Film)
+            @Html.DisplayNameFor(model => model.FilmId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_User)
+            @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Adress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Time_Order)
+            @Html.DisplayNameFor(model => model.TimeOrder)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Delivery_Price)
+            @Html.DisplayNameFor(model => model.DeliveryPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Order_Price)
+            @Html.DisplayNameFor(model => model.OrderPrice)
         </th>
         <th></th>
     </tr>
@@ -35,22 +35,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Film)
+            @Html.DisplayFor(modelItem => item.FilmId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_User)
+            @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Adress)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Time_Order)
+            @Html.DisplayFor(modelItem => item.TimeOrder)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Delivery_Price)
+            @Html.DisplayFor(modelItem => item.DeliveryPrice)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Order_Price)
+            @Html.DisplayFor(modelItem => item.OrderPrice)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

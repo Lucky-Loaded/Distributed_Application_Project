@@ -23,7 +23,7 @@ namespace WcfService
 
 
         [OperationContract]
-        List<FilmDTO> GetFilms();
+        List<FilmDTO> GetFilms(string query);
 
         [OperationContract]
         string PostFilm(FilmDTO filmDto);
@@ -34,12 +34,9 @@ namespace WcfService
         [OperationContract]
         string DeleteFilm(int id);
 
+       
         [OperationContract]
-        string PutFilm(FilmDTO filmDTO);
-        // TODO: Add your service operations here
-
-        [OperationContract]
-        List<UserDTO> GetUsers();
+        List<UserDTO> GetUsers(string query);
 
         [OperationContract]
         string PostUser(UserDTO userDto);
@@ -52,7 +49,7 @@ namespace WcfService
 
 
         [OperationContract]
-        List<OrderDTO> GetOrders();
+        List<OrderDTO> GetOrders(string query);
 
         [OperationContract]
         string PostOrder(OrderDTO orderDTO);

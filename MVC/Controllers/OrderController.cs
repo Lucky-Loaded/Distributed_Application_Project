@@ -11,13 +11,13 @@ namespace MVC.Controllers
     public class OrderController : Controller
     {
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
 
             List<OrderVM> orderVMs = new List<OrderVM>();
 
             using (SOAPService.Service1Client service = new SOAPService.Service1Client()) {
-                foreach (var item in service.GetOrders()) {
+                foreach (var item in service.GetOrders(query)) {
                     orderVMs.Add(new OrderVM(item));
                 }
             }
@@ -33,15 +33,15 @@ namespace MVC.Controllers
             return View(orderVM);
         }
         
-        public ActionResult Create()
+        public ActionResult Create(string query)
         {
-            ViewBag.Films = Helpers.LoadData.LoadFilmData();
-            ViewBag.Users = Helpers.LoadData.LoadUserData();
+            ViewBag.Films = Helpers.LoadData.LoadFilmData(query);
+            ViewBag.Users = Helpers.LoadData.LoadUserData(query);
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(OrderVM orderVM)
+        public ActionResult Create(OrderVM orderVM,string query)
         {
 
             try
@@ -51,22 +51,22 @@ namespace MVC.Controllers
                     {
                         OrderDTO orderDTO = new OrderDTO
                         {
-                            Id_Film = orderVM.Id_Film,
+                            
                         Film = new FilmDTO
                         {
-                            Id = orderVM.Id_Film,
+                            Id = orderVM.FilmId,
                             
                         },
-                        Id_User = orderVM.Id_User,
+                        
                         User = new UserDTO
                         {
-                            Id = orderVM.Id_User,
+                            Id = orderVM.UserId,
                             
                         },
                         Address = orderVM.Adress,
-                        Time_Order = orderVM.Time_Order,
-                        Delivery_Price = orderVM.Delivery_Price,
-                        Order_Price = orderVM.Order_Price
+                        TimeOrder = orderVM.TimeOrder,
+                        DeliveryPrice = orderVM.DeliveryPrice,
+                        OrderPrice = orderVM.OrderPrice
                     };
                         service.PostOrder(orderDTO);
                       
@@ -77,8 +77,8 @@ namespace MVC.Controllers
 
             }
             catch {
-                ViewBag.Films = Helpers.LoadData.LoadFilmData();
-                ViewBag.Users = Helpers.LoadData.LoadUserData(); 
+                ViewBag.Films = Helpers.LoadData.LoadFilmData(query);
+                ViewBag.Users = Helpers.LoadData.LoadUserData(query); 
                 return View(); }
         }
         public ActionResult Delete(int id) {
@@ -86,6 +86,64 @@ namespace MVC.Controllers
                 service.DeleteOrder(id);
             }
             return RedirectToAction("Index");
+        }
+        public ActionResult Edit(int id, string query)
+        {
+            OrderVM orderVM = new OrderVM();
+            using (SOAPService.Service1Client service = new SOAPService.Service1Client())
+            {
+                orderVM = new OrderVM(service.GetOrderByID(id));
+                ViewBag.Films = Helpers.LoadData.LoadFilmData(query);
+                ViewBag.Users = Helpers.LoadData.LoadUserData(query);
+            }
+            return View(orderVM);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(OrderVM orderVM, string query)
+        {
+            try
+            {
+                using (SOAPService.Service1Client service = new SOAPService.Service1Client())
+                {
+                    if (ModelState.IsValid)
+                    {
+                        OrderDTO orderDTO = new OrderDTO
+                        {
+                            Id = orderVM.Id,
+                            Film = new FilmDTO
+                            {
+                                Id = orderVM.FilmId,
+
+                            },
+
+                            User = new UserDTO
+                            {
+                                Id = orderVM.UserId,
+
+                            },
+                            Address = orderVM.Adress,
+                            TimeOrder = orderVM.TimeOrder,
+                            DeliveryPrice = orderVM.DeliveryPrice,
+                            OrderPrice = orderVM.OrderPrice
+
+                        };
+                        service.PostOrder(orderDTO);
+
+                        return RedirectToAction("Index");
+                    }
+
+                    return View();
+
+                }
+            }
+
+            catch
+            {
+                ViewBag.Films = Helpers.LoadData.LoadFilmData(query);
+                ViewBag.Users = Helpers.LoadData.LoadUserData(query);
+                return View();
+            }
         }
     }
 }

@@ -9,20 +9,19 @@ namespace Data.Entities
 {
     public class Order : BaseEntity
     {
-        
-        public int Film_Id { get; set; }
-        public virtual Film Film { get; set; }
-
-        public int User_Id { get; set; }
-        public virtual User User { get; set; }
 
         public string Address { get; set; }
 
         [Required]
-        public DateTime Time_Order { get; set; }
+        public DateTime? TimeOrder { get; set; }
+        public float DeliveryPrice { get; set; }
+        public decimal OrderPrice { get; set; }
 
-        public float Delivery_Price { get; set; }
 
-        public double Order_Price { get; set; }
+        public int FilmId { get; set; }
+        public virtual Film Film { get; set; }
+
+        public int UserId { get; set; }
+        public virtual User User{ get; set; }
     }
 }

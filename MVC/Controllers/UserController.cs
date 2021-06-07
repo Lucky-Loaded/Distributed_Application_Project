@@ -12,11 +12,11 @@ namespace MVC.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
             List<UserVM> userVM = new List<UserVM>();
             using (SOAPService.Service1Client service = new SOAPService.Service1Client()){
-                foreach (var item in service.GetUsers()) {
+                foreach (var item in service.GetUsers(query)) {
                     userVM.Add(new UserVM(item));
                 }  
             }
@@ -41,7 +41,7 @@ namespace MVC.Controllers
                             Name = userVM.Name,
                             Age = userVM.Age,
                             Budget = userVM.Budget,
-                            Buyed = userVM.Buyed,
+                            Phone = userVM.Buyed,
                             Favorites = userVM.Favorites,
                             Description = userVM.Description
                         };
@@ -77,6 +77,51 @@ namespace MVC.Controllers
 
             }
             return View(userVM);
+        }
+        public ActionResult Edit(int id, string query)
+        {
+            UserVM userVM = new UserVM();
+            using (SOAPService.Service1Client service = new SOAPService.Service1Client())
+            {
+                userVM = new UserVM(service.GetUserByID(id));
+            }
+            return View(userVM);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserVM userVM)
+        {
+            try
+            {
+                using (SOAPService.Service1Client service = new SOAPService.Service1Client())
+                {
+                    if (ModelState.IsValid)
+                    {
+                        UserDTO userDTO = new UserDTO
+                        {
+                            Id = userVM.Id,
+                            Name = userVM.Name,
+                            Age = userVM.Age,
+                            Budget = userVM.Budget,
+                            Phone = userVM.Buyed,
+                            Favorites = userVM.Favorites,
+                            Description = userVM.Description
+
+                        };
+                        service.PostUser(userDTO);
+
+                        return RedirectToAction("Index");
+                    }
+
+                    return View();
+
+                }
+            }
+
+            catch
+            {
+                return View();
+            }
         }
     }
 }

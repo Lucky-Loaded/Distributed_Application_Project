@@ -14,19 +14,20 @@ namespace ApplicationService.DTOs
         public int Id { get; set; }
         
 
-        public int Id_Film { get; set; }
-        public virtual FilmDTO Film { get; set; }
         
-        public int Id_User { get; set; }
-        public virtual UserDTO User { get; set; }
+        
         public string Address { get; set; }
 
-        [Required]
-        public DateTime Time_Order { get; set; }
+        
+        public DateTime? TimeOrder { get; set; }
 
-        public float Delivery_Price { get; set; }
+        public float DeliveryPrice { get; set; }
 
-        public double Order_Price { get; set; }
+        public decimal OrderPrice { get; set; }
+        public FilmDTO Film { get; set; }
+
+
+        public UserDTO User { get; set; }
 
     }
 }

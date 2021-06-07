@@ -32,7 +32,9 @@
   </xs:element>
   <xs:element name="GetFilms">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="query" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetFilmsResponse">
@@ -56,17 +58,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetFilmByID">
+  <xs:element name="GetFilmById">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetFilmByIDResponse">
+  <xs:element name="GetFilmByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetFilmByIDResult" nillable="true" type="q5:FilmDTO" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetFilmByIdResult" nillable="true" type="q5:FilmDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,36 +86,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="PutFilm">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="filmDTO" nillable="true" type="q6:FilmDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PutFilmResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="PutFilmResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetUsers">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="query" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetUsersResult" nillable="true" type="q7:ArrayOfUserDTO" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetUsersResult" nillable="true" type="q6:ArrayOfUserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PostUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="userDto" nillable="true" type="q8:UserDTO" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="userDto" nillable="true" type="q7:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -134,7 +124,7 @@
   <xs:element name="GetUserByIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetUserByIDResult" nillable="true" type="q9:UserDTO" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetUserByIDResult" nillable="true" type="q8:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -154,20 +144,22 @@
   </xs:element>
   <xs:element name="GetOrders">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="query" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetOrdersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetOrdersResult" nillable="true" type="q10:ArrayOfOrderDTO" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetOrdersResult" nillable="true" type="q9:ArrayOfOrderDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PostOrder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="orderDTO" nillable="true" type="q11:OrderDTO" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="orderDTO" nillable="true" type="q10:OrderDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -188,7 +180,7 @@
   <xs:element name="GetOrderByIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetOrderByIDResult" nillable="true" type="q12:OrderDTO" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ApplicationService.DTOs" minOccurs="0" name="GetOrderByIDResult" nillable="true" type="q11:OrderDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -14,12 +14,12 @@ namespace MVC.Controllers
     public class FilmController : Controller
     {
         // GET: Film
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
             List<FilmVM> filmVM = new List<FilmVM>();
 
             using (SOAPService.Service1Client service = new SOAPService.Service1Client()) {
-                foreach (var item in service.GetFilms()) {
+                foreach (var item in service.GetFilms(query)) {
                     filmVM.Add(new FilmVM(item));
                 }
             }
@@ -72,47 +72,56 @@ namespace MVC.Controllers
             FilmVM filmVM = new FilmVM();
             using (SOAPService.Service1Client service = new SOAPService.Service1Client())
             {
-                filmVM = new FilmVM(service.GetFilmByID(id));
+                filmVM = new FilmVM(service.GetFilmById(id));
                     }
             return View(filmVM);
         }
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, string query)
         {
-            FilmVM filmVM = null;
-            using (SOAPService.Service1Client service = new SOAPService.Service1Client()) {
-                if (id != 0)
-                {
-                    filmVM = new FilmVM(service.GetFilmByID(id) );
-                }
-                return View(filmVM);
-            } }
-        private Cinema7SystemDBContext ctx = new Cinema7SystemDBContext();
-        [HttpPost, ActionName("Edit")]
-        public ActionResult Edit(FilmVM filmVM)
-        {
-
+            FilmVM filmVM = new FilmVM();
             using (SOAPService.Service1Client service = new SOAPService.Service1Client())
             {
-                if (filmVM.Title.IsNullOrWhiteSpace())
+                filmVM = new FilmVM(service.GetFilmById(id));
+            }
+            return View(filmVM);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FilmVM filmVM)
+        {
+            try
+            {
+                using (SOAPService.Service1Client service = new SOAPService.Service1Client())
                 {
-                    ViewBag.Eror = "This field is required";
+                    if (ModelState.IsValid)
+                    {
+                        FilmDTO filmDTO = new FilmDTO
+                        {
+                            Id = filmVM.Id,
+                            Title = filmVM.Title,
+                            Publishment = filmVM.Publishment,
+                            Price = filmVM.Price,
+                            Sales = filmVM.Sales,
+                            Crew = filmVM.Crew,
+                            Comment = filmVM.Comment
+
+                        };
+                        service.PostFilm(filmDTO);
+
+                        return RedirectToAction("Index");
+                    }
+
                     return View();
-                }
-                else
-                {
 
-                    FilmDTO filmDTO = service.GetFilmByID(filmVM.Id);
-
-                    filmDTO.Title = filmVM.Title;
-                    filmDTO.Publishment = filmVM.Publishment;
-                    filmDTO.Price = filmVM.Price;
-                    filmDTO.Sales = filmVM.Sales;
-                    filmDTO.Crew = filmVM.Crew;
-                    filmDTO.Comment = filmVM.Comment;
-                    service.PutFilm(filmDTO);
                 }
-                return RedirectToAction("Index");
+            }
+
+            catch
+            {
+                return View();
             }
         }
+
     }
-}
+} 
+    

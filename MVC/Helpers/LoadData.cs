@@ -8,16 +8,16 @@ namespace MVC.Helpers
 {
     public class LoadData
     {
-        public static SelectList LoadFilmData() {
+        public static SelectList LoadFilmData(string query) {
             using (SOAPService.Service1Client service = new SOAPService.Service1Client()) {
-                return new SelectList(service.GetFilms(), "Id", "Title");
+                return new SelectList(service.GetFilms(query), "Id", "Title");
             }
         }
-        public static SelectList LoadUserData()
+        public static SelectList LoadUserData(string query)
         {
             using (SOAPService.Service1Client service = new SOAPService.Service1Client())
             {
-                return new SelectList(service.GetUsers(), "Id", "Name");
+                return new SelectList(service.GetUsers(query), "Id", "Name");
             }
         }
     }
